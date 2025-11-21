@@ -11,13 +11,16 @@
         overflow: hidden;
         height: 100vh;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         background: linear-gradient(120deg, #0d1b2a, #1b263b, #415a77);
         background-size: 400% 400%;
         animation: gradiente 12s ease infinite;
-        position: relative;
         font-family: "Poppins", sans-serif;
+        position: relative;
+        color: white;
+        text-align: center;
     }
 
     @keyframes gradiente {
@@ -54,6 +57,7 @@
     .heart {
         width: 100%;
         animation: beat 1.7s infinite ease-in-out;
+        cursor: pointer;
     }
 
     @keyframes beat {
@@ -73,11 +77,17 @@
         pointer-events: none;
     }
 
+    .mensagemClique {
+        margin-top: 20px;
+        font-size: 1.1rem;
+        opacity: 0.9;
+    }
+
 </style>
 </head>
 <body>
 
-<!-- partículas automáticas -->
+<!-- partículas -->
 <script>
     for (let i = 0; i < 25; i++) {
         const p = document.createElement("div");
@@ -94,10 +104,9 @@
     }
 </script>
 
-
 <div class="container">
-    <!-- Coração SVG azul -->
-    <svg class="heart" viewBox="0 0 200 200">
+    <!-- Coração azul SVG -->
+    <svg class="heart" id="heart" viewBox="0 0 200 200">
         <path fill="#3fa9f5" d="
             M100 170
             L30 100
@@ -109,6 +118,19 @@
 
     <div class="texto">Tô com saudades de você</div>
 </div>
+
+<div class="mensagemClique">Clique no coração pra ganhar um presente 💌</div>
+
+<script>
+    function mostrarMensagem() {
+        alert("Você ganhou um vale mil beijinhos 💙💋");
+    }
+
+    const heart = document.getElementById("heart");
+
+    heart.addEventListener("click", mostrarMensagem);
+    heart.addEventListener("touchstart", mostrarMensagem);
+</script>
 
 </body>
 </html>
