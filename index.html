@@ -1,145 +1,111 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Presentinho</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presente</title>
+
 <style>
-  body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(160deg, #0d1b3d 0%, #1b2e5a 50%, #0a1229 100%); /* fundo azul escuro */
-    overflow: hidden;
-    position: relative;
-    font-family: Arial, sans-serif;
-  }
+    body {
+        margin: 0;
+        background: linear-gradient(120deg, #1e3c72, #2a5298, #1e3c72);
+        background-size: 300% 300%;
+        animation: gradientMove 12s ease infinite;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        font-family: "Poppins", sans-serif;
+    }
 
-  
+    @keyframes gradientMove {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
 
-  @keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-    100% { transform: translateY(0); }
-  }
+    .heart-container {
+        position: relative;
+        width: min(70vw, 380px);
+        /* Limita tamanho no celular */
+        animation: beat 2.5s ease-in-out infinite;
+    }
 
-  @keyframes glow {
-    0% { box-shadow: 0 0 4px white; }
-    50% { box-shadow: 0 0 10px white; }
-    100% { box-shadow: 0 0 4px white; }
-  }
+    @keyframes beat {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+    }
 
-  /* Coração */
-  .heart-container {
-    text-align: center;
-    cursor: pointer;
-  }
+    .heart {
+        width: 100%;
+        filter: drop-shadow(0 0 20px rgba(0,160,255,0.7));
+    }
 
-  .heart {
-    position: relative;
-    font-size: 800px;
-    line-height: 1;
-    color: #4e7df0;
-    display: inline-block;
-    transition: transform 0.3s ease;
-    animation: heartbeat 1.8s ease-in-out infinite;
-  }
+    /* Texto dentro */
+    .text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 70%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white;
+        font-size: clamp(14px, 3vw, 20px);
+        line-height: 1.4;
+        font-weight: 500;
+        text-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    }
 
-@keyframes heartbeat {
-  0% { transform: scale(1); }
-  20% { transform: scale(1.12); }
-  40% { transform: scale(1); }
-  60% { transform: scale(1.12); }
-  100% { transform: scale(1); }
-}
+    /* Partículas */
+    .particles {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+    }
 
-  .heart-container:active .heart {
-    transform: scale(1.1);
-  }
+    .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        animation: floatUp 6s linear infinite;
+    }
 
-  .text {
-    margin-top: -10px;
-    font-size: 18px;
-    color: white;
-    font-weight: bold;
-  }
-  /* brilho suave no coração */
-  .heart {
-    animation: heartbeat 1.8s ease-in-out infinite, glowPulse 2.5s ease-in-out infinite;
-    filter: drop-shadow(0 0 14px rgba(255,255,255,0.25));
-  }
-
-  @keyframes glowPulse {
-    0% { filter: drop-shadow(0 0 6px rgba(255,255,255,0.25)); }
-    50% { filter: drop-shadow(0 0 18px rgba(255,255,255,0.55)); }
-    100% { filter: drop-shadow(0 0 6px rgba(255,255,255,0.25)); }
-  }
-
-  /* partículas flutuando */
-  .particle {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: rgba(255,255,255,0.8);
-    border-radius: 50%;
-    animation: floatUp 6s linear infinite;
-  }
-
-  @keyframes floatUp {
-    0% { transform: translateY(0) scale(1); opacity: 1; }
-    100% { transform: translateY(-120vh) scale(0.4); opacity: 0; }
-  }
-
-  /* animação do gradiente */
-  body {
-    background: linear-gradient(160deg, #0d1b3d, #1b2e5a, #0a1229);
-    background-size: 300% 300%;
-    animation: gradientMove 12s ease infinite;
-  }
-
-  @keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
+    @keyframes floatUp {
+        0% { transform: translateY(100vh) scale(1); opacity: 1; }
+        100% { transform: translateY(-10vh) scale(0.2); opacity: 0; }
+    }
 </style>
 </head>
 <body>
 
-<!-- Estrelas/sóis gerados -->
-<script>
-  
-  }
-</script>
-
-<div class="heart-container" onclick="sendGift()">
-  <div class="heart">❤
-    <div style="position:absolute; width:100%; top:50%; left:50%; transform:translate(-50%, -50%); font-size:20px; color:white; font-weight:bold; text-align:center; padding:0 10px;">
-      Tô com saudades de você, Livs
-    </div>
-  </div>
-  <div class="text">Clique no coração<br>pra ganhar um presente 💌</div>
+<div class="particles">
+    <!-- 20 partículas -->
+    <script>
+        for (let i = 0; i < 20; i++) {
+            const p = document.createElement("div");
+            p.className = "particle";
+            p.style.left = Math.random() * 100 + "vw";
+            p.style.animationDelay = Math.random() * 6 + "s";
+            p.style.animationDuration = 4 + Math.random() * 4 + "s";
+            document.querySelector(".particles").appendChild(p);
+        }
+    </script>
 </div>
 
-<script>
-function sendGift() {
-  alert("Você ganhou um vale mil beijinhos 💙");
-}
-</script>
+<div class="heart-container">
+    <img class="heart" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Blue_Heart.svg/1024px-Blue_Heart.svg.png">
+    
+    <div class="text">
+        Meu amorzinho, <br>
+        sou muito feliz por ter meus olhos <br>
+        iluminados pelos seus.
+    </div>
+</div>
 
-<script>
-// partículas flutuando
-for (let i = 0; i < 25; i++) {
-  const p = document.createElement('div');
-  p.className = 'particle';
-  p.style.left = Math.random() * 100 + 'vw';
-  p.style.top = Math.random() * 100 + 'vh';
-  p.style.animationDelay = (Math.random() * 6) + 's';
-  p.style.opacity = 0.4 + Math.random() * 0.6;
-  document.body.appendChild(p);
-}
-</script>
 </body>
 </html>
+
