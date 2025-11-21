@@ -1,111 +1,114 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Presente</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Presentinho</title>
 
 <style>
     body {
         margin: 0;
-        background: linear-gradient(120deg, #1e3c72, #2a5298, #1e3c72);
-        background-size: 300% 300%;
-        animation: gradientMove 12s ease infinite;
+        overflow: hidden;
+        height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
-        overflow: hidden;
+        background: linear-gradient(120deg, #0d1b2a, #1b263b, #415a77);
+        background-size: 400% 400%;
+        animation: gradiente 12s ease infinite;
+        position: relative;
         font-family: "Poppins", sans-serif;
     }
 
-    @keyframes gradientMove {
+    @keyframes gradiente {
         0% { background-position: 0% 50%; }
         50% { background-position: 100% 50%; }
         100% { background-position: 0% 50%; }
     }
 
-    .heart-container {
+    /* partículas */
+    .particle {
+        position: absolute;
+        border-radius: 50%;
+        background: white;
+        opacity: 0.4;
+        animation: float 6s linear infinite;
+    }
+
+    @keyframes float {
+        from { transform: translateY(0); opacity: 0.4; }
+        to { transform: translateY(-120vh); opacity: 0; }
+    }
+
+    /* área do coração */
+    .container {
         position: relative;
-        width: min(70vw, 380px);
-        /* Limita tamanho no celular */
-        animation: beat 2.5s ease-in-out infinite;
+        width: 80vw;
+        max-width: 380px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* animação do coração */
+    .heart {
+        width: 100%;
+        animation: beat 1.7s infinite ease-in-out;
     }
 
     @keyframes beat {
         0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.05); }
+        50% { transform: scale(1.08); }
     }
 
-    .heart {
-        width: 100%;
-        filter: drop-shadow(0 0 20px rgba(0,160,255,0.7));
-    }
-
-    /* Texto dentro */
-    .text {
+    /* texto dentro do coração */
+    .texto {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 70%;
-        transform: translate(-50%, -50%);
         text-align: center;
+        width: 70%;
         color: white;
-        font-size: clamp(14px, 3vw, 20px);
-        line-height: 1.4;
+        font-size: 1.3rem;
         font-weight: 500;
-        text-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Partículas */
-    .particles {
-        position: absolute;
-        inset: 0;
-        overflow: hidden;
+        text-shadow: 0 0 8px rgba(255,255,255,0.7);
         pointer-events: none;
     }
 
-    .particle {
-        position: absolute;
-        width: 4px;
-        height: 4px;
-        background: rgba(255, 255, 255, 0.8);
-        border-radius: 50%;
-        animation: floatUp 6s linear infinite;
-    }
-
-    @keyframes floatUp {
-        0% { transform: translateY(100vh) scale(1); opacity: 1; }
-        100% { transform: translateY(-10vh) scale(0.2); opacity: 0; }
-    }
 </style>
 </head>
 <body>
 
-<div class="particles">
-    <!-- 20 partículas -->
-    <script>
-        for (let i = 0; i < 20; i++) {
-            const p = document.createElement("div");
-            p.className = "particle";
-            p.style.left = Math.random() * 100 + "vw";
-            p.style.animationDelay = Math.random() * 6 + "s";
-            p.style.animationDuration = 4 + Math.random() * 4 + "s";
-            document.querySelector(".particles").appendChild(p);
-        }
-    </script>
-</div>
+<!-- partículas automáticas -->
+<script>
+    for (let i = 0; i < 25; i++) {
+        const p = document.createElement("div");
+        const size = Math.random() * 5 + 3;
 
-<div class="heart-container">
-    <img class="heart" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Blue_Heart.svg/1024px-Blue_Heart.svg.png">
-    
-    <div class="text">
-        Meu amorzinho, <br>
-        sou muito feliz por ter meus olhos <br>
-        iluminados pelos seus.
-    </div>
+        p.classList.add("particle");
+        p.style.width = size + "px";
+        p.style.height = size + "px";
+        p.style.left = Math.random() * 100 + "vw";
+        p.style.bottom = "-20px";
+        p.style.animationDuration = 5 + Math.random() * 5 + "s";
+
+        document.body.appendChild(p);
+    }
+</script>
+
+
+<div class="container">
+    <!-- Coração SVG azul -->
+    <svg class="heart" viewBox="0 0 200 200">
+        <path fill="#3fa9f5" d="
+            M100 170
+            L30 100
+            A35 35 0 1 1 100 60
+            A35 35 0 1 1 170 100
+            Z">
+        </path>
+    </svg>
+
+    <div class="texto">Tô com saudades de você</div>
 </div>
 
 </body>
 </html>
-
